@@ -1,0 +1,47 @@
+ {% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+   {% include 'system/includes/head.html' %}
+
+
+<body>
+        <div class="WrapMain01">
+        
+           {% include 'system/includes/menu.html' %}           
+            
+            <!-- Content + Form -->
+
+        <div class="wrapmain">
+        <div class="main">
+        
+	    <div class="content contentpage">
+	      <div class="post-6 page type-page status-publish hentry" id="post-6"><br>
+		  <div class="meta"></div>
+		  <div class="storycontent">
+		
+		  <h4> Success! </h4>
+		  	      <em>
+			Return to the <a href="{% url 'system:index'%}"> Homepage</a>.
+		      </em>
+		  <p> 
+		      </br>
+		      {{msg|linebreaksbr}}
+
+		  </p>
+
+		  </div>
+		</div>
+	    </div>
+	    <div class="sidebar">
+	      <!-- Form -->
+
+	    </div>
+        
+        </div>
+  </div>
+
+               <div class="footerWrap" style="position:absolute;bottom:0;width:100%" >      
+      {% include 'system/includes/footer.html' %}  
+   </body>
+</html>

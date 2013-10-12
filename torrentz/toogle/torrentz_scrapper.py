@@ -1,0 +1,103 @@
+from urllib import FancyURLopener
+from bs4 import BeautifulSoup
+import constants as cs
+
+class hackerOpener(FancyURLopener):
+    version = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11'
+
+def check_acceptance(string, the_set):
+    all_tags = set(string.split(" "))
+    
+    # check if a tag is valid
+    if all_tags.intersection(the_set):
+        return True
+    return False
+
+
+def grab_specific_element(url, element, title):
+    myHacker = hackerOpener()
+    page = myHacker.open(url)
+    html = page.read() # make it a string
+
+    # turn it into an xml object
+    obj =  BeautifulSoup(html)
+    
+    return obj.find(element, title = title)
+
+
+def grab_the_element(url, element = "dt"):
+    myHacker = hackerOpener()
+    page = myHacker.open(url)
+    html = page.read() # make it a string
+
+    # turn it into an xml object
+    obj =  BeautifulSoup(html)
+    
+    return obj.findAll(element)
+
+def grab_the_best_result(query):
+    
+    ## Get the html 
+    url = cs.site + cs.search["peers"] + "?f="+query
+    all_the_dts = grab_the_element(url)
+
+    # Scrap the movie list
+    links = list()
+    for dt in all_the_dts:
+        try:
+            # split the tags
+            text = dt.text.lower()
+            title, tags = text.split(unichr(187))
+            
+            # test acceptance
+            tag_accepted = check_acceptance(tags, cs.acceptable_set)
+            title_accepted = check_acceptance(title, cs.acceptable_formats)
+            
+            # add only valid results
+            if  tag_accepted and title_accepted:
+                links.append(tuple([dt.a.get('href'), title]))
+        
+        except Exception:
+            pass
+    
+    return links[0]
+
+def find_the_torrent_site(link):
+    url = cs.site + link
+    all_the_dts = grab_the_element(url)
+    for dt in all_the_dts:
+        try:
+            test_accepted = check_acceptance(dt.a.span.text, cs.acceptable_torrent_sites)
+            if test_accepted :
+                return dt.a.get('href')
+        except Exception:
+            pass
+    return ""
+
+def download_file_link(url):
+    the_href = grab_specific_element(url, 'a', 'Download verified torrent file').get('href')
+    
+    return the_href
+
+def search(query):
+    best_result = grab_the_best_result(query)
+    torrent_site_link = find_the_torrent_site(best_result[0])     
+    download_link = download_file_link(torrent_site_link)
+
+    return download_link
+
+if __name__ == '__main__':
+    best_result = grab_the_best_result()
+    print "Best Result:", best_result[1]
+    
+    # best results = tuple(link, name)
+    torrent_site_link = find_the_torrent_site(best_result[0])
+    print "Torrent Site: ", torrent_site_link
+     
+    download_link = download_file_link(torrent_site_link)
+    
+    
+   
+    print "Download Link:", download_link
+
+    

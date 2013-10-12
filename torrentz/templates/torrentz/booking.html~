@@ -1,0 +1,208 @@
+ {% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+   {% include 'system/includes/head.html' %}
+
+<body>
+        <div class="WrapMain01">
+        
+           {% include 'system/includes/menu.html' %}           
+            
+            <!-- Content + Form -->
+
+        <div class="wrapmain">
+        <div class="main">
+        
+        <div class="content contentpage Zindx">
+        
+        <div class="post-6 page type-page status-publish hentry" id="post-6">
+      <h1 class="storytitle">
+        Booking       </h1>
+        
+        </div>
+       
+        
+        
+        <div class="Row001 Mrgn01 Bdrbtm">
+        <div class="Sumry_label Arl_14 Bold Red"> Flight Details</div>
+        
+        <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Departure country:</div>
+        
+          <div class="Sumry_rgt01"><select name="" style="width:190px; height:24px;"></select></div>
+        
+         </div>
+        <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Departure airport:</div>
+        
+          <div class="Sumry_rgt01"><select name="" style="width:190px; height:24px;"></select></div>
+        
+         </div>
+         <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Outbound flight number:</div>
+        
+          <div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+        
+         </div>
+         <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Inbound flight number:</div>
+        
+          <div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+        
+         </div>
+         <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Flying back to a different airport?</div>
+        
+          <div class="Sumry_rgt01"><input name="" type="checkbox" value=""></div>
+        
+         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+           
+           
+           <div class="Row001 Mrgn01 Bdrbtm">
+        <div class="Sumry_label Arl_14 Bold Red">  Accommodation Details</div>
+        
+        
+        
+         <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Accommodation name:</div>
+        
+          <div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+        
+         </div>
+         <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Address:</div>
+        
+          <div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+        
+         </div>
+         <div class="Sumry_label ">
+        <div class="Sumry_left01 Light12 Black">Pick-up from a different address?</div>
+        
+          <div class="Sumry_rgt01"><input name="" type="checkbox" value=""></div>
+        
+         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+        
+        <div class="Row001 Mrgn01 ">
+        
+        
+        
+        
+         <div class="Sumry_label ">
+        <div class="Sumry_left01"><a href="#"><img src="images/back.png" alt="img" width="79" height="28" border="0"></a></div>
+        
+          <div class="Sumry_rgt01 Algn_rgt"><a href="#"><img src="images/continue.png" alt="img" width="100" height="28" border="0"></a></div>
+        
+         </div>
+         
+         
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+    
+        </div>
+        
+        
+        
+        <div class="sidebar">
+          <div class="FormHolder Inhrt">
+          
+          <div class="formQuote">
+          <div class="Row001 Arl_16 Black Bold Mrgn09">
+          Booking Summary
+          </div>
+
+<div class="Row001 Arl_14 Red Bold Mrgn10">
+          Return transfer
+          </div>
+          
+ <div class="Row001 Mrgn09">
+ <div class="Sumry_label">
+ <div class="Sumry_left">From:</div>
+ <div class="Sumry_rgt">Belfast City Airport</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">To:</div>
+ <div class="Sumry_rgt">Antrim (BT41)</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Arriving:</div>
+ <div class="Sumry_rgt">22 April 2013</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Arrival time:	</div>
+ <div class="Sumry_rgt">12:00</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Departing:</div>
+ <div class="Sumry_rgt">28 April 2013</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Departure time:</div>
+ <div class="Sumry_rgt">12:00</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Pickup Date:</div>
+ <div class="Sumry_rgt">28 April 2013</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Pickup Time:</div>
+ <div class="Sumry_rgt">09:00</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Passengers:</div>
+ <div class="Sumry_rgt">2 Adults</div>
+ </div>
+ <div class="Sumry_label">
+ <div class="Sumry_left">Normal Transfer:</div>
+ <div class="Sumry_rgt">1 x £93.86</div>
+ </div>
+ 
+ 
+ 
+ </div>         
+
+   <div class="Row001 Mrgn09">
+   
+   <div class="Sumry_label Red">
+ <div class="Sumry_left">Total Price:</div>
+ <div class="Sumry_rgt">£93.86</div>
+ </div>
+   
+   </div>   			  
+		</div>
+        </div>
+        </div>
+        
+        </div>
+  </div>
+
+
+               <div class="footerWrap" >      
+      {% include 'system/includes/footer.html' %}  
+   </body>
+</html>

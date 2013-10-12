@@ -1,0 +1,469 @@
+{% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+   {% include 'system/includes/head.html' %}
+   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+   
+   <script type="text/javascript">Stripe.setPublishableKey('{{stripe_key}}')</script>
+   
+   <style>
+	.continueBtn {
+	    background-image: url("{%static 'images/book_now.png'%}");
+	    background-position:  0px 0px;
+	    background-repeat: no-repeat;
+	    width: 100px;
+	    height: 28px;
+	    border: 0;
+	}
+    	.backBtn {
+	    background-image: url("{%static 'images/back.png'%}");
+	    background-position:  0px 0px;
+	    background-repeat: no-repeat;
+	    width: 79px;
+	    height: 28px;
+	    border: 0;
+	}
+    </style>
+<body>
+        <div class="WrapMain01">
+        
+ {% include 'system/includes/menu.html' %}           
+            
+            <!-- Content + Form -->
+
+	    <div class="wrapmain">
+	      <div class="main">
+	<form id="finalForm" method='POST' action="{% url 'reservations:order' %}" >
+	{% csrf_token %}
+
+ <div class="content contentpage Zindx">
+	<div class="post-6 page type-page status-publish hentry" id="post-6">
+	</div>
+	<div class="Row001 Mrgn01 Bdrbtm">
+		<div class="Sumry_label Arl_14 Bold Red">  Lead Passenger Details</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Title *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_title" name="title" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Firstname *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_first_name" name="first_name" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Surname *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_surname" name="surname" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Email address *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_email" name="email" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Mobile No *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_mobile_number" name="mobile_number" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Postal/Area Code *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_postal_code" name="postal_code" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Address *:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_address1" name="address1" type="text" style="width:190px; height:24px;"></div>
+		</div>	
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black" > &nbsp; </div>
+			<div class="Sumry_rgt01">
+			<input id="id_address2" name="address2" type="text" style="width:190px; height:24px;"></div>
+		
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black"> &nbsp; </div>
+			<div class="Sumry_rgt01">
+			<input id="id_address3" name="address3" type="text" style="width:190px; height:24px;"></div>	
+		</div>
+	</div>
+	<div class="Row001 Mrgn01 Bdrbtm">
+		<div class="Sumry_label Arl_14 Bold Red">  Cardholder Details 
+		<span class="Light12 Black"> Use passenger details:</span> 
+		<input checked="checked" id="id_use_passenger_details" name="use_passenger_details" onClick="check();" type="checkbox"></div>
+		
+		<div class="Sumry_label" id="Sumry_label101" style="display:none;">
+			<div class="Row001 Mrgn01 Bdrbtm">
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Title:</div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_title" name="cardholders_title" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Firstname:</div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_first_name" name="cardholders_first_name" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Surname:</div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_surname" name="cardholders_surname" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Postal/Area Code:</div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_postal_code" name="cardholders_postal_code" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Address:</div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_address1" name="cardholders_address1" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black"> &nbsp; </div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_address2" name="cardholders_address2" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black"> &nbsp; </div>
+					<div class="Sumry_rgt01">
+					<input id="id_cardholders_address3" name="cardholders_address3" type="text" style="width:190px; height:24px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="Row001 Mrgn01 Bdrbtm">
+		<div class="Sumry_label Arl_14 Bold Red">  Payment Details
+		</div>
+		<div class="Sumry_label "> <a href="#"><img src="{% static 'images/icon_6.jpg' %}" alt="img"  border="0"></a>
+			<a href="#"><img src="{% static 'images/icon_7.jpg' %}" alt="img"  border="0"></a> 
+			<a href="#"><img src="{% static 'images/icon_8.jpg' %}" alt="img"  border="0"></a> 
+			<a href="#"><img src="{% static 'images/icon_9.jpg' %}" alt="img"  border="0"></a> 
+			<a href="#"><img src="{% static 'images/icon_10.jpg' %}" alt="img"  border="0"></a>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card type:</div>
+			<div class="Sumry_rgt01">
+			<select id="id_card_type" name="card_type" style="width:190px; height:24px;">
+			    <option value="Visa">Visa</option>
+			    <option value="Visa Debit">Visa Debit</option>
+			    <option value="Mastercard">Mastercard</option>			
+			</select></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Transfer cost:</div>
+			<div class="Sumry_rgt01 Light12 Black">{{summary.price}} {{summary.cur}}</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card charges:</div>
+			<div class="Sumry_rgt01 Light12 Black">{{summary.charges}} {{summary.cur}}</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Total payable:</div>
+			<div class="Sumry_rgt01 Light12 Black">
+				{{summary.final_price}} {{summary.cur}}
+			</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">
+				Card Number:
+			</div>
+			<div class="Sumry_rgt01">
+			<input id="id_card_number" name="card_number" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card security number:</div>
+			<div class="Sumry_rgt01">
+			<input id="id_security_number" name="security_number" type="text" style="width:100px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card expiry date: <br> (e.g."10/15")</div>
+			<div class="Sumry_rgt01">
+			<select id="id_card_month" name="expiry_date" style="width:40px; height:24px;">
+			{% for month in months %}
+			    <option> {{month}} </option>
+			{% endfor %}
+			</select>
+			<select id="id_card_year" name="expiry_date" style="width:60px; height:24px;">
+			{% for year in years %}
+			    <option> {{year}} </option>
+			{% endfor %}
+			</select>			
+			</div>
+		</div>
+	</div>
+	<div class="Row001 Mrgn01 ">
+		<div class="Sumry_label ">
+		    <div class="Sumry_left01">
+			<button style="cursor:pointer" class="backBtn" onclick = "window.history.back(); return false;"/></button>    
+		    </div>
+		    <div class="Sumry_rgt01 Algn_rgt">
+			<button id="checkout_button"  class="continueBtn"></button>
+		    </div>
+		</div>
+	</div>
+	</form>
+</div>
+        
+        
+        
+ 		      <div class="sidebar">
+			      <div class="FormHolder Inhrt">
+				      <div class="formQuote">
+					      <div class="Row001 Arl_16 Black Bold Mrgn09">
+						      Booking Summary
+					      </div>
+					      <div class="Row001 Arl_14 Red Bold Mrgn10">
+						      Return transfer
+						      
+					      </div>
+					      <div class="Row001 Mrgn09">
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">From:</div>
+							      <div class="Sumry_rgt">{{ summary.starting_point }}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">To:</div>
+							      <div class="Sumry_rgt">{{ summary.drop_off_point }}</div>
+						      </div>
+						      	<div class="Sumry_label">
+							     
+							</div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Arriving:</div>
+							      <div class="Sumry_rgt">{{ summary.arrival_date }}</div>
+						      </div>						      
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Flight:</div>
+							      <div class="Sumry_rgt">{{ summary.flightA }}</div>
+						      </div>
+						      	<div class="Sumry_label">
+							     
+							</div>
+						      {% if summary.normal_or_return == 'Return' %}
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Departing:</div>
+							      <div class="Sumry_rgt">{{ summary.departure_date}}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Flight:</div>
+							      <div class="Sumry_rgt">{{ summary.flightB}}</div>
+						      </div>
+						      	<div class="Sumry_label">
+							</div>
+						      {%endif%}
+						      
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Staying at:</div>
+							      <div class="Sumry_rgt">{{ summary.accomodation_nameA}}</div>
+						      </div>
+						      
+						      {% if summary.accomodation_addressA1 %}
+						      <div class="Sumry_label">
+							      <div class="Sumry_left"> </div>
+							      <div class="Sumry_rgt">{{ summary.accomodation_addressA1}}</div>
+						      </div>
+						      {% endif %}
+						      {% if summary.accomodation_addressA2 %}
+						      <div class="Sumry_label">
+							      <div class="Sumry_left"> </div>
+							      <div class="Sumry_rgt">{{ summary.accomodation_addressA1}}</div>
+						      </div>	
+						      {% endif %}
+						      {% if summary.accomodation_addressA2 %}
+						      <div class="Sumry_label">
+							      <div class="Sumry_left"> </div>
+							      <div class="Sumry_rgt">{{ summary.accomodation_addressA3}}</div>
+						      </div>	
+						      {% endif %}						      
+						      	<div class="Sumry_label">
+							</div>						      
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Passengers:</div>
+							      <div class="Sumry_rgt">{{summary.persons}}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Transfer:</div>
+							      <div class="Sumry_rgt">{{summary.cars}} Cars x {{summary.per_car}} {{summary.cur}}</div>
+						      </div>
+					      </div>
+					      <div class="Sumry_label">
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Card Charges:</div>
+							      <div class="Sumry_rgt">{{summary.charges}}</div>
+						      </div>
+					      </div>
+					      
+					      <div class="Row001 Mrgn09">
+						      <div class="Sumry_label Red">
+							      <div class="Sumry_left">Total Price:</div>
+							      <div class="Sumry_rgt">{{summary.final_price}} {{summary.cur}}</div>
+						      </div>
+					      </div>
+				      </div>
+			      </div>
+		      </div>
+        
+        </div>
+  </div>
+
+
+	<div class="footerWrap" style="bottom:0; width:100%; height:235px;">    
+      {% include 'system/includes/footer.html' %}  
+   </body>
+           
+   <script>
+   
+        var ckval = document.getElementById('id_use_passenger_details');
+  
+	function check(field)
+	{	  
+	  if (ckval.checked==false)
+	      document.getElementById("Sumry_label101").style.display="block";
+	  else
+	      document.getElementById("Sumry_label101").style.display="none"; 
+
+	}
+	 
+   	/****************************************************
+	* Validate  The Form
+	*/
+	
+
+	
+	function validate(ele){
+	    if (! ele.value) {
+		    ele.style.border= '1px solid red';	  
+		    return 1;
+	    }
+	    else 
+		ele.style.border= '1px solid grey';
+		
+	    return 0;	
+	}
+	
+	function validForm(){	  
+	
+	    var title =  document.getElementById("id_title"),
+	        first_name =  document.getElementById("id_first_name"),    
+	        surname =  document.getElementById("id_surname"),
+	        email =  document.getElementById("id_email"),
+	        mobile =  document.getElementById("id_mobile_number"),
+	        postal =  document.getElementById("id_postal_code"),
+	        address =  document.getElementById("id_address1");
+	         
+	    var c_title=  document.getElementById("id_cardholders_title"),
+	        c_first_name =  document.getElementById("id_cardholders_first_name"),
+	        c_surname =  document.getElementById("id_cardholders_surname"),
+	        c_postal = document.getElementById("id_cardholders_postal_code"),
+	        c_address =  document.getElementById("id_cardholders_address1");
+	    var card = document.getElementById("id_card_type"),
+		card_number = document.getElementById("id_card_number"),
+		card_security = document.getElementById("id_security_number"),
+		card_month = document.getElementById("id_card_month");
+		card_year = document.getElementById("id_card_year");
+
+	    errors= validate(title);
+	    errors+= validate(first_name);
+	    errors+= validate(surname);
+	    errors+= validate(email);
+	    errors+= validate(mobile);
+	    errors+= validate(postal);
+	    errors+= validate(address);
+	    
+	    if (!ckval.checked){
+		errors+= validate(c_title);
+		errors+= validate(c_first_name);
+		errors+= validate(c_surname);
+		errors+= validate(c_postal);
+		errors+= validate(c_address);
+	    }
+	        
+	    errors+= validate(card_number);
+	    errors+= validate(card_security);
+	    errors+= validate(card_month);
+	    errors+= validate(card_year);
+	    
+	    
+	    if (errors)
+		return false;
+	    return true;
+	}
+	
+   	/****************************************************
+	* Handle Stripe
+	*/	
+	
+	function stripeResponseHandler(status, response) {
+	    if (response.error) {
+		alert("Something went wrong with the transaction, please try again a bit later!");
+		return false;
+	    }
+	    
+	    // Get the token from the response:
+	    var token = response.id;
+	    
+	    // Add the token to the form:
+	    $jquery("#finalForm").append('<input type="hidden" name="stripeToken" value="' + token + '" />');
+	    
+	    // Submit the form:
+	    document.getElementById("finalForm").submit();
+	}	
+	
+	function stripePayment(){
+	
+	    var card = document.getElementById("id_card_type").value,
+		card_number = document.getElementById("id_card_number").value,
+		card_security = document.getElementById("id_security_number").value,
+		card_month = document.getElementById("id_card_month").value,
+		card_year = document.getElementById("id_card_year").value;
+	
+	    // Validate the number:
+	    if (!Stripe.validateCardNumber(card_number)) {
+		alert('The credit card number appears to be invalid.');
+		return false;
+	    }
+	    
+	    // Validate the CVC:
+	    if (!Stripe.validateCVC(card_security)) {
+		alert('The CVC number appears to be invalid.');
+		return false;
+	    }
+	    // Validate the expiration:
+	    if (!Stripe.validateExpiry(card_month,card_year)) {
+		alert('The expiration date appears to be invalid.');
+		return false;
+	    }
+	    
+	    // Get the Stripe token:
+	    Stripe.createToken({
+		    number: card_number,
+		    cvc: card_security,
+		    exp_month: card_month,
+		    exp_year: card_year
+		}, stripeResponseHandler);
+		
+	    return false;
+	}
+	
+	/****************************************************
+	* Hook it all up
+	*/
+	
+	function magic(){
+	
+	    if ( !validForm() )
+	      return false;
+	      
+	    return stripePayment()
+	}
+      
+	document.getElementById("checkout_button").onclick = magic;
+	
+      </script>
+      
+      
+      
+</html>

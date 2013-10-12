@@ -1,0 +1,12 @@
+from django.conf.urls import patterns, include, url
+
+from torrentz import views
+# Uncomment the next two lines to enable the admin:
+# from django.contrib import admin
+# admin.autodiscover()
+
+urlpatterns = patterns('',
+    url(r'^search/', views.search, name="search"),
+    url(r'^$', views.index, name="index"),
+    
+)

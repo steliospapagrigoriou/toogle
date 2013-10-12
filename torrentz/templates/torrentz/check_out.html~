@@ -1,0 +1,229 @@
+{% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+   {% include 'system/includes/head.html' %}
+
+   <style>
+    .continueBtn {
+    
+    background-image: url("{%static 'images/continue.png'%}");
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 28px;
+    border: 0;
+    }
+    </style>
+<body>
+        <div class="WrapMain01">
+        
+ {% include 'system/includes/menu.html' %}           
+            
+            <!-- Content + Form -->
+
+	    <div class="wrapmain">
+	      <div class="main">
+	<form method='POST' action="/book/checkout/" >
+
+ <div class="content contentpage Zindx">
+	<div class="post-6 page type-page status-publish hentry" id="post-6">
+		<h1 class="storytitle">
+			Check Out      
+		</h1>
+	</div>
+	<div class="Row001 Mrgn01 Bdrbtm">
+		<div class="Sumry_label Arl_14 Bold Red">  Lead Passenger Details</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Title:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Firstname:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Surname:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Email address:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Mobile No:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Postal/Area Code:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Address:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+	</div>
+	<div class="Row001 Mrgn01 Bdrbtm">
+		<div class="Sumry_label Arl_14 Bold Red">  Cardholder Details <span class="Light12 Black">Use passenger details:</span> <input name="myckbox" type="checkbox" value="" id="myckbox" onClick="check();"></div>
+		<div class="Sumry_label" id="Sumry_label101" style="display:none;">
+			<div class="Row001 Mrgn01 Bdrbtm">
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Title:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Firstname:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Surname:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Email address:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Mobile No:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Postal/Area Code:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+				<div class="Sumry_label ">
+					<div class="Sumry_left01 Light12 Black">Address:</div>
+					<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="Sumry_label"  >
+			<div class="Sumry_left01 Light12 Black">Enter discount code (if any):</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:80px; height:24px;">
+				<a href="#"><img src="images/apply.png" alt="img" width="79" height="28" border="0" align="absmiddle"></a>
+			</div>
+		</div>
+	</div>
+	<div class="Row001 Mrgn01 Bdrbtm">
+		<div class="Sumry_label Arl_14 Bold Red">  Payment Details
+		</div>
+		<div class="Sumry_label "> <a href="#"><img src="images/icon_6.jpg" alt="img"  border="0"></a>
+			<a href="#"><img src="images/icon_7.jpg" alt="img"  border="0"></a> 
+			<a href="#"><img src="images/icon_8.jpg" alt="img"  border="0"></a> 
+			<a href="#"><img src="images/icon_9.jpg" alt="img"  border="0"></a> 
+			<a href="#"><img src="images/icon_10.jpg" alt="img"  border="0"></a>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card type:</div>
+			<div class="Sumry_rgt01"><select name="" style="width:190px; height:24px;"></select></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Transfer cost:</div>
+			<div class="Sumry_rgt01 Light12 Black">£285.56</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card charges:</div>
+			<div class="Sumry_rgt01 Light12 Black">£3.50</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Carbon offset:</div>
+			<div class="Sumry_rgt01 Light12 Black">
+				£0.50
+			</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Total payable:</div>
+			<div class="Sumry_rgt01 Light12 Black">
+				£289.06
+			</div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">
+				Card Number:
+			</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:190px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card security number:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:100px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card issue number:</div>
+			<div class="Sumry_rgt01"><input name="" type="text" style="width:100px; height:24px;"></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card start date:</div>
+			<div class="Sumry_rgt01"><select name="" style="width:80px; height:24px;"></select> <select name="" style="width:80px; height:24px;"></select></div>
+		</div>
+		<div class="Sumry_label ">
+			<div class="Sumry_left01 Light12 Black">Card expiry date:</div>
+			<div class="Sumry_rgt01"><select name="" style="width:80px; height:24px;"></select> <select name="" style="width:80px; height:24px;"></select></div>
+		</div>
+	</div>
+	<div class="Row001 Mrgn01 ">
+		<div class="Sumry_label ">
+			<div class="Sumry_left01"><a href="#"><img src="images/back.png" alt="img" width="79" height="28" border="0"></a></div>
+			<div class="Sumry_rgt01 Algn_rgt"><a href="#"><img src="images/book_now.png" alt="img" width="100" height="28" border="0"></a></div>
+		</div>
+	</div>
+</div>
+        
+        
+        
+ 		      <div class="sidebar">
+			      <div class="FormHolder Inhrt">
+				      <div class="formQuote">
+					      <div class="Row001 Arl_16 Black Bold Mrgn09">
+						      Booking Summary
+					      </div>
+					      <div class="Row001 Arl_14 Red Bold Mrgn10">
+						      Return transfer
+						      
+					      </div>
+					      <div class="Row001 Mrgn09">
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">From:</div>
+							      <div class="Sumry_rgt">{{ summary.starting_point }}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">To:</div>
+							      <div class="Sumry_rgt">{{ summary.drop_off_point }}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Arriving:</div>
+							      <div class="Sumry_rgt">{{ summary.arrival_date }}</div>
+						      </div>
+						      {% if summary.normal_or_return == 'Return' %}
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Departing:</div>
+							      <div class="Sumry_rgt">{{ summary.departure_date}}</div>
+						      </div>
+						      {%endif%}
+						      
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Passengers:</div>
+							      <div class="Sumry_rgt">{{summary.persons}}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Transfer:</div>
+							      <div class="Sumry_rgt">{{summary.cars}} Cars x {{summary.per_car}} {{summary.cur}}</div>
+						      </div>
+					      </div>
+					      <div class="Row001 Mrgn09">
+						      <div class="Sumry_label Red">
+							      <div class="Sumry_left">Total Price:</div>
+							      <div class="Sumry_rgt">{{summary.price}} {{summary.cur}}</div>
+						      </div>
+					      </div>
+				      </div>
+			      </div>
+		      </div>
+        
+        </div>
+  </div>
+
+
+<div class="footerWrap" >      
+      {% include 'system/includes/footer.html' %}  
+   </body>
+</html>

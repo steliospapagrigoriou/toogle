@@ -1,0 +1,222 @@
+ {% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+   {% include 'system/includes/head.html' %}
+
+   <style>
+	.continueBtn {
+	    background-image: url("{%static 'images/continue.png'%}");
+	    background-position:  0px 0px;
+	    background-repeat: no-repeat;
+	    width: 100px;
+	    height: 28px;
+	    border: 0;
+	}
+	.backBtn {
+	    background-image: url("{%static 'images/back.png'%}");
+	    background-position:  0px 0px;
+	    background-repeat: no-repeat;
+	    width: 79px;
+	    height: 28px;
+	    border: 0;
+	}
+    </style>
+
+<body>
+        <div class="WrapMain01">
+        
+           {% include 'system/includes/menu.html' %}           
+            
+            <!-- Content + Form -->
+
+	    <div class="wrapmain">
+	      <div class="main">
+	      
+	      <form id="detailsForm" method='POST' action="/book/checkout/" >
+	      {% csrf_token %}
+		      <div class="content contentpage Zindx">
+			      <div style="height:5px;"></div>
+			      <div class="Row001 Mrgn01 Bdrbtm">
+				      <div class="Sumry_label Arl_14 Bold Red"> Flight Details</div>
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Departure country*:</div>
+					      <div class="Sumry_rgt01">
+						  <select id="dep_country" name="departure_country" style="width:190px; height:24px;">
+						  <option value=""></option>
+						  
+						  {% for country in countries %}
+						  
+						  <option value="{{country}}"> {{country}} </option>
+						  {% endfor %}
+						 
+						 </select>
+					      
+					      </div>
+				      </div>
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Outbound flight number*:</div>
+					      <div class="Sumry_rgt01">
+						 <input id="outbound_flight" name="flightA" maxlength="10" type="text" style="width:190px; height:24px;">
+					      </div>
+				      </div>
+				      {% if summary.normal_or_return != "Normal" %}
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Inbound flight number*:</div>
+					      <div class="Sumry_rgt01">
+						  <input id="inbound_flight" name="flightB" maxlength="10" type="text" style="width:190px; height:24px;">
+					      </div>
+				      </div>
+				      {% endif %}
+			      </div>
+			      <div class="Row001 Mrgn01 Bdrbtm">
+				      <div class="Sumry_label Arl_14 Bold Red">  Accommodation Details</div>
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Accommodation name*:</div>
+					      <div class="Sumry_rgt01">
+						<input id ="accomodation_name" name="accomodation_nameA" type="text" style="width:190px; height:24px;">
+					      </div>
+				      </div>
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Address:</div>
+					      <div class="Sumry_rgt01">
+					      <input name="accomodation_addressA1" type="text" style="width:190px; height:24px;"></div>
+				      </div>
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Address:</div>
+					      <div class="Sumry_rgt01"><input name="accomodation_addressA2" type="text" style="width:190px; height:24px;"></div>
+				      </div>
+				      <div class="Sumry_label ">
+					      <div class="Sumry_left01 Light12 Black">Address:</div>
+					      <div class="Sumry_rgt01"><input name="accomodation_addressA3" type="text" style="width:190px; height:24px;"></div>
+				      </div>
+				      
+			      </div>
+			      <div class="Row001 Mrgn01 ">
+				      <div class="Sumry_label " >
+					      <div class="Sumry_left01">
+						    <button style="cursor:pointer" class="backBtn" onclick = "window.history.back(); return false;"/></button>    
+					      
+					      </div>
+					      <div class="Sumry_rgt01 Algn_rgt" >
+						      <button type="submit" style="cursor:pointer"  class="continueBtn"></button>
+					      </div>
+				      </div>
+			      </div>
+		      </div>
+		      </form>
+		      <div class="sidebar">
+			      <div class="FormHolder Inhrt">
+				      <div class="formQuote">
+					      <div class="Row001 Arl_16 Black Bold Mrgn09">
+						      Booking Summary
+					      </div>
+					      <div class="Row001 Arl_14 Red Bold Mrgn10">
+						      Return transfer
+						      
+					      </div>
+					      <div class="Row001 Mrgn09">
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">From:</div>
+							      <div class="Sumry_rgt">{{ summary.starting_point }}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">To:</div>
+							      <div class="Sumry_rgt">{{ summary.drop_off_point }}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Arriving:</div>
+							      <div class="Sumry_rgt">{{ summary.arrival_date }}</div>
+						      </div>
+						      {% if summary.normal_or_return == 'Return' %}
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Departing:</div>
+							      <div class="Sumry_rgt">{{ summary.departure_date}}</div>
+						      </div>
+						      {%endif%}
+						      
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Passengers:</div>
+							      <div class="Sumry_rgt">{{summary.persons}}</div>
+						      </div>
+						      <div class="Sumry_label">
+							      <div class="Sumry_left">Transfer:</div>
+							      <div class="Sumry_rgt">{{summary.cars}} Cars x {{summary.per_car|floatformat}} {{summary.cur}}</div>
+						      </div>
+					      </div>
+					      <div class="Row001 Mrgn09">
+						      <div class="Sumry_label Red">
+							      <div class="Sumry_left">Total Price:</div>
+							      <div class="Sumry_rgt">{{summary.price|floatformat}} {{summary.cur}}</div>
+						      </div>
+					      </div>
+				      </div>
+			      </div>
+		      </div>
+	      </div>
+      </div>
+
+   
+            <div class="footerWrap" style="bottom:0; width:100%;position:absolute;">      
+      {% include 'system/includes/footer.html' %}  
+   </body>
+   
+   <script>
+	 
+	// Animate Country 
+	$jquery("#dep_country").chosen() 
+	
+   	/****************************************************
+	* Validate  The Form
+	*/
+	
+	      function validate(ele){	      
+		  if (! ele.value) {
+		      ele.style.border= '1px solid red';	  
+		      return 1;
+		  }else 
+		      ele.style.border= '1px solid grey';
+		      
+		  return 0;
+	      }
+	      
+	      function validateForm(){	    
+		  
+		  var country = document.getElementById("dep_country"); 
+		  var country_chzn = document.getElementById("dep_country_chzn");
+		  
+		  var out_flight = document.getElementById("outbound_flight");    
+		  var accomodation = document.getElementById("accomodation_name")
+		  
+		  var errors = 0;
+		  
+		  if (!country.value){
+		      errors+=1;
+		      country_chzn.style.border = '1px solid red';
+		  } else
+		      country_chzn.style.border = '1px solid grey';
+		      
+		  errors+= validate(out_flight);
+		  errors+= validate(accomodation);
+		  
+		  ///// Return Trip  
+		  {% if summary.normal_or_return != "Normal" %}
+
+		  var in_flight = document.getElementById("inbound_flight");
+		  
+		  errors+= validate(in_flight);
+		  
+		  {% endif %}
+		  
+		  
+		  if (errors>0)
+		      return false;
+	      
+		  return true;
+	      }
+	      
+	// hook up the handlers
+	document.getElementById("detailsForm").onsubmit = validateForm;
+	 
+      </script>
+</html>

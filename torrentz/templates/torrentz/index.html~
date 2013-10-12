@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<html>
+
+<head>
+<title>Torret Hacking</title>
+</head>
+
+<body>
+<div style = "width:2500px">
+
+  <div class="center">
+    <img src="{% static 'download.jpg'%}" style="width:450px">
+    <div>
+      <form name="search" method="POST" action="/search/">
+      {% csrf_token %}
+      <input type="text" name="query" style="width:350px">
+      <input type="submit" value="Download" style="width:70px">
+
+      </form>
+    </div>
+  </div>
+  
+</body>
+
+<style>
+  .center
+  {
+  margin-left:auto;
+  margin-right:auto;
+  width:40%;
+  }
+</style>
+
+</html>
